@@ -1,4 +1,4 @@
-# 🏰 The Builder's Citadel — Complete Guide
+# The Builder's Citadel — Complete Guide
 
 *The plain-English manual for the whole system: what it does, how it's built, how it protects you, what it records, and how to switch on automation. Read this once and you'll understand everything the setup created.*
 
