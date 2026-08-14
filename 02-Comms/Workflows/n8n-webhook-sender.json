@@ -1,0 +1,43 @@
+{
+  "name": "Citadel — webhook sender (SKELETON — the AI pings this when a draft is ready)",
+  "meta": { "note": "Starting point, not plug-and-play. Import into n8n, attach YOUR Gmail credential, activate to get your private webhook URL (n8n shows it on the Webhook node). Your scheduled AI task calls that URL as its final step, passing {\"subject\": \"Daily Brief 2026-07-18\"}. KEEP THE URL PRIVATE - anyone holding it can trigger a send. This sends drafts AS ADDRESSED; the recipient guard lives at draft time (see AUTOMATION.md). Test with a draft addressed to yourself first." },
+  "nodes": [
+    {
+      "name": "Draft-ready webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "parameters": { "httpMethod": "POST", "path": "citadel-send", "responseMode": "onReceived" }
+    },
+    {
+      "name": "Find matching draft",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [220, 0],
+      "parameters": { "resource": "draft", "operation": "getAll", "returnAll": true },
+      "credentials": { "gmailOAuth2": { "name": "ATTACH YOUR OWN GMAIL CREDENTIAL" } }
+    },
+    {
+      "name": "Subject matches the ping",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [440, 0],
+      "parameters": { "conditions": { "options": { "caseSensitive": false }, "conditions": [ { "leftValue": "={{ $json.message.subject }}", "rightValue": "={{ $('Draft-ready webhook').item.json.body.subject }}", "operator": { "type": "string", "operation": "equals" } } ] } }
+    },
+    {
+      "name": "Send the draft",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [660, 0],
+      "parameters": { "resource": "draft", "operation": "send", "draftId": "={{ $json.id }}" },
+      "credentials": { "gmailOAuth2": { "name": "ATTACH YOUR OWN GMAIL CREDENTIAL" } }
+    }
+  ],
+  "connections": {
+    "Draft-ready webhook": { "main": [ [ { "node": "Find matching draft", "type": "main", "index": 0 } ] ] },
+    "Find matching draft": { "main": [ [ { "node": "Subject matches the ping", "type": "main", "index": 0 } ] ] },
+    "Subject matches the ping": { "main": [ [ { "node": "Send the draft", "type": "main", "index": 0 } ] ] }
+  },
+  "settings": {},
+  "pinData": {}
+}

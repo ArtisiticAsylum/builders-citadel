@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+<rect x="0" y="0" width="1280" height="640" fill="#fdeedc"/>
+<g transform="translate(330,150) scale(0.72)">
+  <rect x="0" y="0" width="1280" height="640" fill="#fdeedc"/>
+  <circle cx="1185" cy="68" r="64" fill="#f9c98a" opacity="0.5"/>
+  <circle cx="1185" cy="68" r="47" fill="#f6b26b"/>
+  <ellipse cx="220" cy="120" rx="70" ry="24" fill="#ffffff" opacity="0.85"/>
+  <ellipse cx="285" cy="135" rx="48" ry="18" fill="#ffffff" opacity="0.65"/>
+  <ellipse cx="900" cy="480" rx="60" ry="20" fill="#ffffff" opacity="0.5"/>
+  <ellipse cx="620" cy="80" rx="55" ry="19" fill="#ffffff" opacity="0.7"/>
+  <path d="M340 96 q10 -10 20 0 q10 -10 20 0" fill="none" stroke="#b98a5a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M395 120 q8 -8 16 0 q8 -8 16 0" fill="none" stroke="#b98a5a" stroke-width="2.5" stroke-linecap="round"/>
+  <ellipse cx="430" cy="600" rx="300" ry="30" fill="#c98f5f" opacity="0.28"/>
+  <polygon points="430,410 200,467 430,525 660,467" fill="#8fbf7f"/>
+  <polygon points="200,467 430,525 430,585 200,527" fill="#7a5a3e"/>
+  <polygon points="660,467 430,525 430,585 660,527" fill="#5e4530"/>
+  <polygon points="430,417 250,462 288,472 430,437 572,472 610,462" fill="#a3cc90"/>
+  <polygon points="430,325 280,400 430,475 580,400" fill="#e9c9a1"/>
+  <polygon points="280,400 430,475 430,555 280,480" fill="#d9a86f"/>
+  <polygon points="580,400 430,475 430,555 580,480" fill="#b9854e"/>
+  <polygon points="330,432 354,444 354,486 330,474" fill="#6e4a2c"/>
+  <polygon points="470,452 494,440 494,474 470,486" fill="#f6e3c8"/>
+  <polygon points="510,432 534,420 534,454 510,466" fill="#f6e3c8"/>
+  <polygon points="430,262 315,330 430,398 545,330" fill="#f0d7b4"/>
+  <polygon points="315,330 430,398 430,468 315,400" fill="#e0b57e"/>
+  <polygon points="545,330 430,398 430,468 545,400" fill="#c4925c"/>
+  <polygon points="345,358 367,369 367,401 345,390" fill="#f6e3c8"/>
+  <polygon points="385,378 407,389 407,421 385,410" fill="#f6e3c8"/>
+  <polygon points="455,389 477,378 477,410 455,421" fill="#8a5c33"/>
+  <polygon points="495,369 517,358 517,390 495,401" fill="#8a5c33"/>
+  <polygon points="430,205 345,247.5 430,290 515,247.5" fill="#f6e3c8"/>
+  <polygon points="345,247.5 430,290 430,350 345,307.5" fill="#e8c294"/>
+  <polygon points="515,247.5 430,290 430,350 515,307.5" fill="#cfa06a"/>
+  <polygon points="370,272 390,282 390,310 370,300" fill="#6e4a2c"/>
+  <polygon points="470,282 490,272 490,300 470,310" fill="#6e4a2c"/>
+  <polygon points="430,157 370,187 430,217 490,187" fill="#f9ecd6"/>
+  <polygon points="370,187 430,217 430,262 370,232" fill="#eccd9e"/>
+  <polygon points="490,187 430,217 430,262 490,232" fill="#d4a76c"/>
+  <polygon points="404,205 424,215 424,238 404,228" fill="#f2b544"/>
+  <polygon points="430,130 355,167.5 430,205 505,167.5" fill="#d9805f"/>
+  <polygon points="430,60 355,167.5 430,205" fill="#e2793f"/>
+  <polygon points="430,60 505,167.5 430,205" fill="#c9563f"/>
+  <line x1="430" y1="60" x2="430" y2="18" stroke="#7a5a3e" stroke-width="5"/>
+  <polygon points="430,18 430,44 482,31" fill="#e2793f"/>
+  
+  <g>
+    <polygon points="700,430 660,420 700,410 740,420" fill="#f2c94c"/>
+    <polygon points="660,420 700,430 700,458 660,448" fill="#d4a72c"/>
+    <polygon points="740,420 700,430 700,458 740,448" fill="#b3881e"/>
+    <polygon points="700,410 681,405.5 692,403 711,407.5" fill="#f7dc85"/>
+  </g>
+  <g>
+    <polygon points="775,470 741,461.5 775,453 809,461.5" fill="#f2c94c"/>
+    <polygon points="741,461.5 775,470 775,494 741,485.5" fill="#d4a72c"/>
+    <polygon points="809,461.5 775,470 775,494 809,485.5" fill="#b3881e"/>
+  </g>
+  <g>
+    <polygon points="722,520 694,513 722,506 750,513" fill="#f2c94c"/>
+    <polygon points="694,513 722,520 722,540 694,533" fill="#d4a72c"/>
+    <polygon points="750,513 722,520 722,540 750,533" fill="#b3881e"/>
+  </g>
+  
+  
+  <circle cx="640" cy="240" r="6" fill="#f2b544"/>
+  <circle cx="980" cy="430" r="5" fill="#c9563f"/>
+  <circle cx="1060" cy="530" r="7" fill="#8fbf7f"/>
+  <path d="M1180 320 l16 0 m-8 -8 l0 16" stroke="#d4a72c" stroke-width="3" stroke-linecap="round"/>
+  <path d="M84 560 l14 0 m-7 -7 l0 14" stroke="#c98f5f" stroke-width="3" stroke-linecap="round"/>
+</g>
+<g font-family="DejaVu Sans, sans-serif">
+<text x="640" y="92" font-size="64" font-weight="bold" fill="#4a3520" text-anchor="middle">Builder's Citadel</text>
+<text x="640" y="132" font-size="24" fill="#6e4a2c" text-anchor="middle">A rules-first vault for working safely with AI</text>
+<rect x="505" y="560" width="270" height="42" rx="21" fill="#c9563f"/>
+<text x="640" y="588" font-size="19" font-weight="bold" fill="#fdeedc" text-anchor="middle">Free forever - MIT license</text>
+</g>
+</svg>

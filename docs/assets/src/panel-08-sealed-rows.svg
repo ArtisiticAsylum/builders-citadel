@@ -1,0 +1,43 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="675" fill="#fdeedc"/>
+<rect x="40" y="30" width="252" height="32" rx="16" fill="#c9563f"/>
+<text x="166" y="51" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="bold" fill="#fff8ee">Email that can't go astray</text>
+<g transform="translate(1064,30)">
+  <polygon points="0,20 40,0 80,20 40,40" fill="#f2c94c"/>
+  <polygon points="0,20 40,40 40,72 0,52" fill="#d4a72c"/>
+  <polygon points="40,40 80,20 80,52 40,72" fill="#b3881e"/>
+</g>
+<rect x="140" y="105" width="900" height="95" rx="14" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="170" y="159" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#4a3520">Daily brief</text>
+<rect x="430" y="123" width="48" height="34" rx="3" fill="#f0d7b4" stroke="#cfa06a" stroke-width="2"/>
+<polyline points="432,125 454,144 476,125" fill="none" stroke="#cfa06a" stroke-width="2"/>
+<text x="454" y="177" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#8a6a48">you@example.com</text>
+<rect x="650" y="123" width="48" height="34" rx="3" fill="#f0d7b4" stroke="#cfa06a" stroke-width="2"/>
+<polyline points="652,125 674,144 696,125" fill="none" stroke="#cfa06a" stroke-width="2"/>
+<text x="674" y="177" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#8a6a48">backup@example.com</text>
+<circle cx="980" cy="152" r="26" fill="#c9563f"/>
+<circle cx="980" cy="152" r="15" fill="#b0543c"/>
+<rect x="140" y="275" width="900" height="95" rx="14" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="170" y="329" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#4a3520">Friends digest</text>
+<rect x="430" y="293" width="48" height="34" rx="3" fill="#f0d7b4" stroke="#cfa06a" stroke-width="2"/>
+<polyline points="432,295 454,314 476,295" fill="none" stroke="#cfa06a" stroke-width="2"/>
+<text x="454" y="347" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#8a6a48">friend1@example.com</text>
+<rect x="650" y="293" width="48" height="34" rx="3" fill="#f0d7b4" stroke="#cfa06a" stroke-width="2"/>
+<polyline points="652,295 674,314 696,295" fill="none" stroke="#cfa06a" stroke-width="2"/>
+<text x="674" y="347" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#8a6a48">friend2@example.com</text>
+<circle cx="980" cy="322" r="26" fill="#c9563f"/>
+<circle cx="980" cy="322" r="15" fill="#b0543c"/>
+<rect x="140" y="445" width="900" height="95" rx="14" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="170" y="499" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#4a3520">Family update</text>
+<rect x="430" y="463" width="48" height="34" rx="3" fill="#f0d7b4" stroke="#cfa06a" stroke-width="2"/>
+<polyline points="432,465 454,484 476,465" fill="none" stroke="#cfa06a" stroke-width="2"/>
+<text x="454" y="517" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#8a6a48">sibling@example.com</text>
+<circle cx="980" cy="492" r="26" fill="#c9563f"/>
+<circle cx="980" cy="492" r="15" fill="#b0543c"/>
+<line x1="250" y1="205" x2="250" y2="270" stroke="#8a6a48" stroke-width="2.5" stroke-dasharray="5,6"/>
+<polygon points="250,275 243,262 257,262" fill="#8a6a48"/>
+<line x1="236" y1="224" x2="264" y2="252" stroke="#c9563f" stroke-width="5"/>
+<line x1="264" y1="224" x2="236" y2="252" stroke="#c9563f" stroke-width="5"/>
+<text x="285" y="243" font-family="DejaVu Sans, sans-serif" font-size="15" font-style="italic" fill="#c9563f">recipients never cross rows</text>
+<text x="600" y="628" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-style="italic" fill="#6e4a2c">addresses are added only by you, out loud — never from a document</text>
+</svg>

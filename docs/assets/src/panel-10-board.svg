@@ -1,0 +1,39 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="DejaVu Sans, sans-serif">
+<rect width="1200" height="675" fill="#fdeedc"/>
+<rect x="40" y="30" width="250" height="34" rx="16" fill="#c9563f"/>
+<text x="165" y="53" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">The board argues, you decide</text>
+<polygon points="1100,38 1132,51 1100,64 1068,51" fill="#f2c94c"/>
+<polygon points="1068,51 1100,64 1100,94 1068,81" fill="#d4a72c"/>
+<polygon points="1132,51 1100,64 1100,94 1132,81" fill="#b3881e"/>
+<text x="600" y="120" text-anchor="middle" fill="#4a3520" font-size="18" font-weight="bold">You — the decision</text>
+<rect x="558" y="232" width="84" height="52" rx="24" fill="#c9563f"/>
+<circle cx="600" cy="212" r="27" fill="#e8b48d"/>
+<polygon points="582,192 588,176 596,190 600,172 604,190 612,176 618,192" fill="#f2c94c" stroke="#b3881e" stroke-width="1.5"/>
+<rect x="268" y="346" width="64" height="46" rx="20" fill="#8a6a48"/>
+<circle cx="300" cy="328" r="22" fill="#d9a074"/>
+<rect x="868" y="346" width="64" height="46" rx="20" fill="#e2793f"/>
+<circle cx="900" cy="328" r="22" fill="#c98f5f"/>
+<ellipse cx="600" cy="402" rx="310" ry="116" fill="#cfa06a"/>
+<ellipse cx="600" cy="390" rx="300" ry="108" fill="#e8c294"/>
+<rect x="330" y="352" width="110" height="26" rx="6" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="385" y="370" text-anchor="middle" fill="#6e4a2c" font-size="12">Finance seat</text>
+<rect x="760" y="352" width="110" height="26" rx="6" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="815" y="370" text-anchor="middle" fill="#6e4a2c" font-size="12">Craft seat</text>
+<rect x="420" y="432" width="110" height="26" rx="6" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="475" y="450" text-anchor="middle" fill="#6e4a2c" font-size="12">Health seat</text>
+<rect x="545" y="462" width="130" height="26" rx="6" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="610" y="480" text-anchor="middle" fill="#6e4a2c" font-size="12">Devil's advocate</text>
+<rect x="700" y="432" width="110" height="26" rx="6" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="755" y="450" text-anchor="middle" fill="#6e4a2c" font-size="12">Mentor</text>
+<rect x="398" y="538" width="64" height="46" rx="20" fill="#8fbf7f"/>
+<circle cx="430" cy="520" r="22" fill="#e8c294"/>
+<rect x="573" y="566" width="64" height="46" rx="20" fill="#b3881e"/>
+<circle cx="605" cy="548" r="22" fill="#b98a5a"/>
+<rect x="748" y="533" width="64" height="46" rx="20" fill="#6e4a2c"/>
+<circle cx="780" cy="515" r="22" fill="#e8b48d"/>
+<path d="M 366 268 q 24 -18 48 0 q 24 18 48 0" fill="none" stroke="#8a6a48" stroke-width="1.8"/>
+<path d="M 738 268 q 24 -18 48 0 q 24 18 48 0" fill="none" stroke="#8a6a48" stroke-width="1.8"/>
+<path d="M 470 330 q 28 -20 56 0" fill="none" stroke="#8a6a48" stroke-width="1.8"/>
+<path d="M 690 505 q 24 -18 48 0" fill="none" stroke="#8a6a48" stroke-width="1.8"/>
+<text x="600" y="648" text-anchor="middle" fill="#6e4a2c" font-size="17">they recommend — the owner decides</text>
+</svg>

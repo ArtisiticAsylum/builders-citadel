@@ -1,0 +1,60 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="DejaVu Sans, sans-serif">
+<rect width="1200" height="675" fill="#fdeedc"/>
+<rect x="0" y="0" width="400" height="675" fill="#3d3a5c"/>
+<circle cx="45" cy="150" r="2" fill="#ffffff"/>
+<circle cx="90" cy="95" r="2" fill="#ffffff"/>
+<circle cx="170" cy="125" r="2" fill="#ffffff"/>
+<circle cx="235" cy="150" r="2" fill="#ffffff"/>
+<circle cx="365" cy="200" r="2" fill="#ffffff"/>
+<circle cx="55" cy="330" r="2" fill="#ffffff"/>
+<circle cx="370" cy="320" r="2" fill="#ffffff"/>
+<circle cx="60" cy="590" r="2" fill="#ffffff"/>
+<circle cx="360" cy="610" r="2" fill="#ffffff"/>
+<circle cx="200" cy="620" r="2" fill="#ffffff"/>
+<circle cx="310" cy="95" r="34" fill="#f6e3c8"/>
+<circle cx="324" cy="86" r="30" fill="#3d3a5c"/>
+<circle cx="140" cy="210" r="52" fill="#fff8ee" stroke="#8a6a48" stroke-width="3"/>
+<line x1="140" y1="164" x2="140" y2="172" stroke="#8a6a48" stroke-width="3"/>
+<line x1="180" y1="210" x2="188" y2="210" stroke="#8a6a48" stroke-width="3"/>
+<line x1="140" y1="248" x2="140" y2="256" stroke="#8a6a48" stroke-width="3"/>
+<line x1="92" y1="210" x2="100" y2="210" stroke="#8a6a48" stroke-width="3"/>
+<line x1="140" y1="210" x2="140" y2="174" stroke="#4a3520" stroke-width="5" stroke-linecap="round"/>
+<line x1="140" y1="210" x2="157" y2="239" stroke="#4a3520" stroke-width="6" stroke-linecap="round"/>
+<circle cx="140" cy="210" r="5" fill="#4a3520"/>
+<text x="140" y="292" text-anchor="middle" fill="#f6e3c8" font-size="14">05:00</text>
+<rect x="252" y="440" width="76" height="130" fill="#6e4a2c"/>
+<rect x="262" y="395" width="56" height="45" fill="#6e4a2c"/>
+<polygon points="256,395 324,395 290,345" fill="#6e4a2c"/>
+<line x1="290" y1="345" x2="290" y2="322" stroke="#6e4a2c" stroke-width="3"/>
+<polygon points="290,322 312,328 290,334" fill="#6e4a2c"/>
+<g transform="translate(182,438)">
+<g fill="#f2c94c"><rect x="-4" y="-31" width="8" height="12"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(45)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(90)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(135)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(180)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(225)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(270)"/><rect x="-4" y="-31" width="8" height="12" transform="rotate(315)"/><circle r="21"/></g>
+<circle r="7" fill="#3d3a5c"/>
+</g>
+<g transform="translate(226,402)">
+<g fill="#f2c94c"><rect x="-3.5" y="-22" width="7" height="9"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(45)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(90)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(135)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(180)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(225)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(270)"/><rect x="-3.5" y="-22" width="7" height="9" transform="rotate(315)"/><circle r="15"/></g>
+<circle r="5" fill="#3d3a5c"/>
+</g>
+<g transform="translate(156,366)">
+<g fill="#f2c94c"><rect x="-3" y="-19" width="6" height="8"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(45)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(90)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(135)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(180)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(225)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(270)"/><rect x="-3" y="-19" width="6" height="8" transform="rotate(315)"/><circle r="12.5"/></g>
+<circle r="4" fill="#3d3a5c"/>
+</g>
+<path d="M 350 430 C 470 440 500 380 566 373" fill="none" stroke="#8a6a48" stroke-width="5"/>
+<polygon points="592,372 566,360 566,384" fill="#8a6a48"/>
+<polygon points="610,345 755,235 900,345" fill="#e8c294" stroke="#6e4a2c" stroke-width="2"/>
+<rect x="650" y="155" width="210" height="210" rx="8" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="755" y="195" text-anchor="middle" fill="#4a3520" font-size="20" font-weight="bold">Daily Brief</text>
+<line x1="672" y1="212" x2="838" y2="212" stroke="#e0c9a8" stroke-width="2"/>
+<rect x="672" y="230" width="7" height="7" fill="#e2793f"/>
+<text x="690" y="239" fill="#8a6a48" font-size="14">what moved</text>
+<rect x="672" y="258" width="7" height="7" fill="#e2793f"/>
+<text x="690" y="267" fill="#8a6a48" font-size="14">what's due</text>
+<rect x="672" y="286" width="7" height="7" fill="#e2793f"/>
+<text x="690" y="295" fill="#8a6a48" font-size="14">what slipped</text>
+<rect x="605" y="340" width="300" height="125" rx="8" fill="#f0d7b4" stroke="#6e4a2c" stroke-width="2"/>
+<polyline points="608,344 755,432 902,344" fill="none" stroke="#6e4a2c" stroke-width="2"/>
+<text x="755" y="560" text-anchor="middle" fill="#6e4a2c" font-size="16">the brief is waiting before you wake</text>
+<polygon points="1080,38 1112,51 1080,64 1048,51" fill="#f2c94c"/>
+<polygon points="1048,51 1080,64 1080,94 1048,81" fill="#d4a72c"/>
+<polygon points="1112,51 1080,64 1080,94 1112,81" fill="#b3881e"/>
+</svg>

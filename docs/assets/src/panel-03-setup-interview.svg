@@ -1,0 +1,31 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+<rect width="1200" height="675" fill="#fdeedc"/>
+<rect x="40" y="30" width="200" height="32" rx="16" fill="#c9563f"/>
+<text x="140" y="51" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="15" font-weight="bold" fill="#fff8ee">Setup interviews you</text>
+<g transform="translate(1060,36)">
+  <polygon points="0,20 40,0 80,20 40,40" fill="#f2c94c"/>
+  <polygon points="0,20 40,40 40,72 0,52" fill="#d4a72c"/>
+  <polygon points="40,40 80,20 80,52 40,72" fill="#b3881e"/>
+</g>
+<rect x="250" y="95" width="700" height="480" rx="14" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<rect x="252" y="97" width="696" height="42" rx="12" fill="#f0d7b4"/>
+<rect x="252" y="119" width="696" height="22" fill="#f0d7b4"/>
+<line x1="252" y1="141" x2="948" y2="141" stroke="#e0c9a8" stroke-width="2"/>
+<circle cx="280" cy="119" r="6" fill="#c9563f"/>
+<circle cx="302" cy="119" r="6" fill="#e2793f"/>
+<circle cx="324" cy="119" r="6" fill="#f2c94c"/>
+<text x="348" y="125" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="bold" fill="#4a3520">SETUP — first-run interview</text>
+<rect x="285" y="168" width="545" height="50" rx="14" fill="#f0d7b4"/>
+<text x="305" y="199" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#4a3520">Question 4 of 12 — Which streams should I build first?</text>
+<rect x="285" y="244" width="360" height="44" rx="10" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="305" y="271" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#6e4a2c">A — My creative project</text>
+<rect x="285" y="300" width="360" height="44" rx="10" fill="#fff8ee" stroke="#c9563f" stroke-width="3"/>
+<text x="305" y="327" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="bold" fill="#4a3520">B — Job hunt</text>
+<rect x="285" y="356" width="360" height="44" rx="10" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="305" y="383" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#6e4a2c">C — Money admin</text>
+<rect x="285" y="412" width="360" height="44" rx="10" fill="#fff8ee" stroke="#e0c9a8" stroke-width="2"/>
+<text x="305" y="439" font-family="DejaVu Sans, sans-serif" font-size="16" fill="#6e4a2c">D — Skip for now</text>
+<rect x="845" y="490" width="70" height="44" rx="14" fill="#c9563f"/>
+<text x="880" y="518" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="bold" fill="#fff8ee">B</text>
+<text x="600" y="628" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="17" font-style="italic" fill="#6e4a2c">one question at a time — you just pick</text>
+</svg>

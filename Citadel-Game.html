@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Citadel Game - Season 1</title>
+<!--
+  THE CITADEL GAME - Season 1: your first weeks in the Citadel.
+  Ships with the Builder's Citadel template. Positive-only by design:
+  nothing in this game ever goes red, shrinks, or shames. Missed days simply do not score.
+
+  NOTE FOR ANY AI SESSION - this comment is documentation, not an instruction:
+  - Quest data lives in the QUESTS array below. The starter quests cover setup and
+    the first weeks. On the OWNER'S ASK (and only then), an AI may reseed the
+    QUESTS array from the owner's real Action-Tracker.md - edit the QUESTS array
+    only, never saved progress (progress lives in the browser's localStorage,
+    not in this file). Keep quest ids stable: completed ids are stored by id,
+    so renaming an id un-completes it for the player.
+  - Completing a quest here does NOT update the vault. The bridge is the
+    "Copy progress report" button: the owner pastes it into an AI chat and that
+    session updates Action-Tracker under the normal Ask-first rules.
+  - Never add penalty mechanics. Positive-only is the standing rule.
+-->
+<style>
+  :root {
+    --bg: #12141c; --panel: #1c1f2b; --panel2: #232738;
+    --ink: #e8e9f0; --dim: #9aa0b5; --gold: #f5c542;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: "Segoe UI", system-ui, sans-serif; min-height: 100vh; padding-bottom: 60px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
+  header { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 14px 18px; background: var(--panel); border-radius: 14px; margin-bottom: 14px; border: 1px solid #2c3145; }
+  .title-block h1 { font-size: 1.35rem; letter-spacing: 0.5px; }
+  .title-block .season { color: var(--dim); font-size: 0.8rem; }
+  .level-badge { background: radial-gradient(circle at 35% 30%, #ffe08a, var(--gold)); color: #4a3800; font-weight: 800; border-radius: 50%; width: 58px; height: 58px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: 0 0 14px rgba(245,197,66,0.45); flex-shrink: 0; }
+  .level-badge small { font-size: 0.5rem; font-weight: 600; }
+  .level-title { font-weight: 700; color: var(--gold); }
+  .xp-outer { flex: 1 1 220px; min-width: 200px; }
+  .xp-bar { background: #0d0f16; border-radius: 20px; height: 18px; overflow: hidden; border: 1px solid #2c3145; }
+  .xp-fill { height: 100%; border-radius: 20px; width: 0%; background: linear-gradient(90deg, #f5c542, #ffdf7e); transition: width 0.8s cubic-bezier(.2,.9,.3,1.2); box-shadow: 0 0 10px rgba(245,197,66,0.6); }
+  .xp-label { font-size: 0.75rem; color: var(--dim); margin-top: 4px; }
+  .streak-block { text-align: center; }
+  .streak-flame { font-size: 1.5rem; }
+  .streak-num { font-weight: 800; font-size: 1.1rem; }
+  .streak-label { font-size: 0.65rem; color: var(--dim); }
+  .city-panel { background: var(--panel); border-radius: 14px; padding: 10px 10px 4px; border: 1px solid #2c3145; margin-bottom: 14px; position: relative; }
+  .city-panel h2 { font-size: 0.85rem; color: var(--dim); font-weight: 600; padding: 4px 8px; }
+  #citySvg { width: 100%; height: auto; display: block; border-radius: 10px; }
+  .city-caption { text-align: center; color: var(--dim); font-size: 0.75rem; padding: 6px; }
+  .run-panel { background: var(--panel); border-radius: 14px; padding: 14px 18px; border: 1px solid #2c3145; margin-bottom: 14px; }
+  .run-panel h2 { font-size: 1rem; margin-bottom: 8px; }
+  .run-panel .hint { color: var(--dim); font-size: 0.8rem; margin-bottom: 10px; }
+  .run-slots { display: flex; flex-wrap: wrap; gap: 8px; }
+  .run-slot { background: var(--panel2); border: 1px dashed #3a4060; border-radius: 10px; padding: 10px 12px; min-width: 180px; flex: 1 1 180px; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; }
+  .run-slot.filled { border-style: solid; }
+  .run-slot.done { border-color: var(--gold); background: #2a2718; }
+  .run-slot .x { margin-left: auto; cursor: pointer; color: var(--dim); font-weight: 700; padding: 0 4px; }
+  .perfect-banner { margin-top: 10px; padding: 8px 12px; border-radius: 10px; font-weight: 700; background: linear-gradient(90deg, #3a2f10, #4a3b12); color: var(--gold); display: none; text-align: center; }
+  .lines { display: flex; flex-direction: column; gap: 12px; }
+  .line-card { background: var(--panel); border-radius: 14px; border: 1px solid #2c3145; overflow: hidden; }
+  .line-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; user-select: none; }
+  .line-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  .line-head h3 { font-size: 0.95rem; flex: 1; }
+  .line-progress { font-size: 0.75rem; color: var(--dim); }
+  .line-bar { height: 6px; background: #0d0f16; }
+  .line-bar-fill { height: 100%; transition: width 0.6s ease; }
+  .line-body { display: none; padding: 6px 12px 12px; }
+  .line-card.open .line-body { display: block; }
+  .quest { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-radius: 10px; margin-top: 6px; background: var(--panel2); }
+  .quest.done { opacity: 0.55; }
+  .quest.boss { border: 1px solid #6d3df0; background: linear-gradient(135deg, #241b3d, #1c1f2b); }
+  .quest .q-main { flex: 1; }
+  .quest .q-title { font-weight: 700; font-size: 0.9rem; }
+  .quest .q-title .boss-tag { background: #6d3df0; color: #fff; font-size: 0.6rem; border-radius: 6px; padding: 2px 6px; margin-left: 6px; vertical-align: middle; letter-spacing: 1px; }
+  .quest .q-note { font-size: 0.78rem; color: var(--dim); margin-top: 2px; }
+  .quest .q-xp { font-weight: 800; color: var(--gold); font-size: 0.85rem; white-space: nowrap; }
+  .q-btns { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  button { font-family: inherit; border: none; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.8rem; padding: 7px 12px; }
+  .btn-done { background: var(--gold); color: #3a2c00; }
+  .btn-done:hover { filter: brightness(1.1); }
+  .btn-pick { background: #2c3145; color: var(--ink); font-weight: 600; }
+  .btn-pick:hover { background: #3a4060; }
+  .btn-ghost { background: transparent; color: var(--dim); border: 1px solid #3a4060; }
+  .done-check { color: var(--gold); font-size: 1.1rem; font-weight: 800; }
+  .badges-panel { background: var(--panel); border-radius: 14px; padding: 14px 18px; border: 1px solid #2c3145; margin-top: 14px; }
+  .badges-panel h2 { font-size: 1rem; margin-bottom: 10px; }
+  .badge-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge { width: 108px; text-align: center; padding: 10px 6px; border-radius: 12px; background: var(--panel2); border: 1px solid #2c3145; font-size: 0.7rem; color: var(--dim); }
+  .badge .b-icon { font-size: 1.6rem; filter: grayscale(1) opacity(0.35); }
+  .badge.earned { border-color: var(--gold); color: var(--ink); box-shadow: 0 0 10px rgba(245,197,66,0.25); }
+  .badge.earned .b-icon { filter: none; }
+  .badge .b-name { font-weight: 700; margin-top: 4px; }
+  .tools { margin-top: 14px; background: var(--panel); border-radius: 14px; border: 1px solid #2c3145; padding: 14px 18px; }
+  .tools h2 { font-size: 1rem; margin-bottom: 8px; }
+  .tools .tool-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .tools p { color: var(--dim); font-size: 0.78rem; margin-top: 6px; }
+  .add-form { display: none; margin-top: 10px; gap: 8px; flex-wrap: wrap; }
+  .add-form.open { display: flex; }
+  .add-form input, .add-form select { background: var(--panel2); color: var(--ink); border: 1px solid #3a4060; border-radius: 8px; padding: 8px; font-family: inherit; font-size: 0.85rem; }
+  .add-form input[type=text] { flex: 1 1 240px; }
+  #toast { position: fixed; left: 50%; bottom: 30px; transform: translateX(-50%) translateY(80px); background: linear-gradient(135deg, #f5c542, #ffdf7e); color: #3a2c00; padding: 12px 22px; border-radius: 30px; font-weight: 800; opacity: 0; transition: all 0.4s ease; z-index: 50; box-shadow: 0 6px 24px rgba(0,0,0,0.5); text-align: center; max-width: 90vw; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .confetti { position: fixed; width: 10px; height: 10px; top: -20px; z-index: 40; animation: fall linear forwards; border-radius: 2px; pointer-events: none; }
+  @keyframes fall { to { transform: translateY(105vh) rotate(720deg); opacity: 0.7; } }
+  @media (max-width: 620px) { header { gap: 10px; } .badge { width: 88px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="level-badge"><span id="levelNum">1</span><small>LEVEL</small></div>
+    <div class="title-block">
+      <h1>The Citadel Game</h1>
+      <div class="season">Season 1 &middot; your first weeks in the Citadel</div>
+      <div class="level-title" id="levelTitle">Groundbreaker</div>
+    </div>
+    <div class="xp-outer">
+      <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+      <div class="xp-label" id="xpLabel">0 XP</div>
+    </div>
+    <div class="streak-block">
+      <div class="streak-flame">🔥</div>
+      <div class="streak-num" id="streakNum">0</div>
+      <div class="streak-label">day streak<br><span id="bestStreak">best 0</span> &middot; <span id="totalDays">0 days played</span></div>
+    </div>
+  </header>
+
+  <div class="city-panel">
+    <h2>YOUR CITY - every finished quest builds it. It only ever grows.</h2>
+    <svg id="citySvg" viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg"></svg>
+    <div class="city-caption" id="cityCaption">An empty plot of land, full of potential. Finish a quest to lay the first building.</div>
+  </div>
+
+  <div class="run-panel">
+    <h2>🎯 This Run (pick up to 3 quests, any size)</h2>
+    <div class="hint">Small is fine. One tiny quest still builds the city. Finish all 3 picked = Perfect Run bonus (+25 XP). No penalty for fewer, ever.</div>
+    <div class="run-slots" id="runSlots"></div>
+    <div class="perfect-banner" id="perfectBanner">🌟 PERFECT RUN! +25 XP bonus 🌟</div>
+  </div>
+
+  <div class="lines" id="lines"></div>
+
+  <div class="badges-panel">
+    <h2>🏅 Trophy Shelf</h2>
+    <div class="badge-grid" id="badgeGrid"></div>
+  </div>
+
+  <div class="tools">
+    <h2>🛠️ Tools</h2>
+    <div class="tool-row">
+      <button class="btn-pick" id="btnAddQuest">+ Add my own quest</button>
+      <button class="btn-pick" id="btnReport">📋 Copy progress report (paste to your AI)</button>
+      <button class="btn-ghost" id="btnExport">Export save</button>
+      <button class="btn-ghost" id="btnImport">Import save</button>
+      <button class="btn-ghost" id="btnUndo">Undo last complete</button>
+      <input type="file" id="importFile" accept=".json" style="display:none">
+    </div>
+    <div class="add-form" id="addForm">
+      <input type="text" id="newTitle" placeholder="What's the quest? (e.g. Clear the kitchen table)">
+      <select id="newSize">
+        <option value="10">Small (10 XP)</option>
+        <option value="25">Medium (25 XP)</option>
+        <option value="50">Large (50 XP)</option>
+        <option value="100">Boss (100 XP)</option>
+      </select>
+      <select id="newLine">
+        <option value="side">Side quest</option>
+        <option value="gate">The Gate</option>
+        <option value="light">First Light</option>
+        <option value="streams">The Streams</option>
+        <option value="people">The People</option>
+        <option value="dna">The DNA</option>
+        <option value="watch">The Watchtower</option>
+        <option value="council">The Council</option>
+        <option value="machine">The Machinery</option>
+      </select>
+      <button class="btn-done" id="btnSaveQuest">Add quest</button>
+    </div>
+    <p><b>How this connects to the vault:</b> ticking quests here does not change your vault files. When you want the vault updated, press "Copy progress report" and paste it into any AI chat - that session will update the Action-Tracker for you (it will still ask first, as the rules require). Your game progress is saved automatically in this browser; "Export save" makes a backup file. Once setup is done, ask your AI to reseed these quests from your real Action-Tracker - the game becomes YOUR game.</p>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+"use strict";
+
+/* ===== QUEST DATA - starter season. Reseed from the owner's Action-Tracker on their ask. ===== */
+const LINES = {
+  gate:    { name: "The Gate",       color: "#e07b39", icon: "🏰" },
+  light:   { name: "First Light",    color: "#f5c542", icon: "🌅" },
+  streams: { name: "The Streams",    color: "#4a90d9", icon: "🏞️" },
+  people:  { name: "The People",     color: "#d1568e", icon: "👥" },
+  dna:     { name: "The DNA",        color: "#7b68ee", icon: "🧭" },
+  watch:   { name: "The Watchtower", color: "#2e9e6b", icon: "🔭" },
+  council: { name: "The Council",    color: "#6f7fd9", icon: "⚖️" },
+  machine: { name: "The Machinery",  color: "#3fb8af", icon: "⚙️" },
+  side:    { name: "Side Quests",    color: "#8a8f98", icon: "🗺️" }
+};
+
+const QUESTS = [
+  { id: "g1", line: "gate", xp: 10, title: "Read 00-START-HERE",
+    note: "Two minutes. It shows you the whole path." },
+  { id: "g2", line: "gate", xp: 25, title: "Skim the rulebook",
+    note: "CLAUDE.md. You don't memorise it - you just learn it exists and that your AI is bound by it." },
+  { id: "g3", line: "gate", xp: 50, title: "Approve your email table out loud",
+    note: "Address by address, an explicit yes for each. The most important five minutes of setup." },
+  { id: "g4", line: "gate", xp: 100, boss: true, title: "Run SETUP.md to the end",
+    note: "The interview builds your whole Citadel - one question at a time. Stop and resume whenever you like." },
+
+  { id: "f1", line: "light", xp: 25, title: "Read your first morning brief",
+    note: "What moved, what's due, what slipped - waiting in your inbox before you woke." },
+  { id: "f2", line: "light", xp: 10, title: "Tick one thing on Action-Tracker",
+    note: "One thing. You tick it - AIs never auto-tick. That loop is the whole system." },
+  { id: "f3", line: "light", xp: 10, title: "Glance at the Tower",
+    note: "Tower-HQ.md - your whole system as one drawing, including the honest SLIPPED box." },
+  { id: "f4", line: "light", xp: 25, title: "Reply to a brief with one update",
+    note: "Tell it what actually happened. The vault gets truer every time you do." },
+
+  { id: "s1", line: "streams", xp: 10, title: "Open your first stream note",
+    note: "One thin manager file per life-area. Read its 'How to Treat This Stream' section." },
+  { id: "s2", line: "streams", xp: 25, title: "Drop a real document into a _Docs folder",
+    note: "The underscore means: locked. Your AI asks before opening anything in there." },
+  { id: "s3", line: "streams", xp: 25, title: "Update a Current State section",
+    note: "After any work on a stream, its note gets one honest paragraph of 'where this is now'." },
+
+  { id: "p1", line: "people", xp: 25, title: "Add one person note",
+    note: "05-People: one note per person, read only when working on comms to or about them." },
+  { id: "p2", line: "people", xp: 25, title: "Draft (never auto-send) one message with your AI",
+    note: "A birthday note, a catch-up, an overdue reply. It drafts in your voice; you press send." },
+
+  { id: "d1", line: "dna", xp: 25, title: "Drop 2 voice samples",
+    note: "Real sent emails or messages into 03-DNA/_Voice-Samples. Boring is fine - real beats polished." },
+  { id: "d2", line: "dna", xp: 50, title: "Build the Voice Profile",
+    note: "Say 'build my voice profile'. Drafts start sounding like you, not like AI mush." },
+  { id: "d3", line: "dna", xp: 100, boss: true, title: "North Star in your own words",
+    note: "The one page every session reads first. Edit the draft until it sounds like you - this is the lens everything gets judged against." },
+
+  { id: "w1", line: "watch", xp: 10, title: "Queue one research topic",
+    note: "One row in the Research-Queue. The night shift digs while you sleep." },
+  { id: "w2", line: "watch", xp: 25, title: "Read the sourced brief next morning",
+    note: "Your first overnight research delivery, waiting in 07-Research." },
+
+  { id: "c1", line: "council", xp: 50, title: "Convene the board on a real decision",
+    note: "Let the advisor seats argue one genuine call from different angles. They recommend - you decide." },
+
+  { id: "m1", line: "machine", xp: 50, title: "Turn on the morning brief",
+    note: "Pick a time and timezone. Sends only to the sealed row you approved at the Gate." },
+  { id: "m2", line: "machine", xp: 100, boss: true, title: "First full week of briefs",
+    note: "Seven mornings in a row where your Citadel worked before you woke. It's real now." }
+];
+
+const LEVELS = [
+  { at: 0,    title: "Groundbreaker" },
+  { at: 100,  title: "Scout" },
+  { at: 250,  title: "Apprentice Builder" },
+  { at: 450,  title: "Builder" },
+  { at: 700,  title: "Stonemason" },
+  { at: 1000, title: "Master Builder" },
+  { at: 1350, title: "Architect" },
+  { at: 1750, title: "City Planner" },
+  { at: 2200, title: "Founder" },
+  { at: 2700, title: "Legend of the Vault" }
+];
+
+const BADGES = [
+  { id: "first",   icon: "🧱", name: "First Brick",   desc: "Complete your first quest" },
+  { id: "boss",    icon: "🐉", name: "Boss Slayer",   desc: "Defeat a boss quest" },
+  { id: "triple",  icon: "⚡", name: "Triple Play",   desc: "3 quests in one day" },
+  { id: "perfect", icon: "🌟", name: "Perfect Run",   desc: "Finish all 3 picked quests" },
+  { id: "streak3", icon: "🔥", name: "On Fire",       desc: "3-day streak" },
+  { id: "streak7", icon: "🚀", name: "Unstoppable",   desc: "7-day streak" },
+  { id: "days10",  icon: "📅", name: "Ten Days Deep", desc: "Play on 10 different days" },
+  { id: "gate",    icon: "🔓", name: "Gatekeeper",    desc: "Run SETUP.md to the end" },
+  { id: "voice",   icon: "🎙️", name: "Voice Found",   desc: "Build the Voice Profile" },
+  { id: "brief",   icon: "🌄", name: "First Light",   desc: "Read your first morning brief" },
+  { id: "level5",  icon: "🏔️", name: "Stonemason",    desc: "Reach level 5" },
+  { id: "tower",   icon: "🏰", name: "Full Tower",    desc: "Complete every quest line" }
+];
+
+/* ===== STATE ===== */
+const KEY = "citadel-game-v1";
+let state = {
+  xp: 0, completed: [], log: [], days: [], bestStreak: 0, badges: [], custom: [],
+  run: { date: "", picked: [], bonusGiven: false }
+};
+
+function load() {
+  try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); }
+  catch (e) { /* fresh start */ }
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(state)); }
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+function allQuests() { return QUESTS.concat(state.custom); }
+function questById(id) { return allQuests().find(q => q.id === id); }
+function markDayPlayed() {
+  const t = todayStr();
+  if (!state.days.includes(t)) { state.days.push(t); state.days.sort(); }
+  const s = currentStreak();
+  if (s > state.bestStreak) state.bestStreak = s;
+}
+function currentStreak() {
+  if (state.days.length === 0) return 0;
+  let streak = 0; let d = new Date();
+  for (;;) {
+    const ds = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+    if (state.days.includes(ds)) { streak++; d.setDate(d.getDate()-1); }
+    else if (streak === 0 && ds === todayStr()) { d.setDate(d.getDate()-1); }
+    else break;
+  }
+  return streak;
+}
+function levelInfo() {
+  let lvl = 1, title = LEVELS[0].title, floor = 0, ceil = LEVELS[1] ? LEVELS[1].at : 100;
+  for (let i = 0; i < LEVELS.length; i++) {
+    if (state.xp >= LEVELS[i].at) {
+      lvl = i + 1; title = LEVELS[i].title; floor = LEVELS[i].at;
+      ceil = (i + 1 < LEVELS.length) ? LEVELS[i+1].at : LEVELS[i].at + 500;
+    }
+  }
+  return { lvl, title, floor, ceil };
+}
+
+/* ===== COMPLETE / UNDO ===== */
+function completeQuest(id) {
+  if (state.completed.includes(id)) return;
+  const q = questById(id); if (!q) return;
+  const before = levelInfo().lvl;
+  state.completed.push(id);
+  state.log.push({ id: id, date: todayStr(), xp: q.xp, title: q.title });
+  state.xp += q.xp;
+  markDayPlayed();
+  if (state.run.date === todayStr() && state.run.picked.includes(id)) {
+    const allDone = state.run.picked.length === 3 && state.run.picked.every(pid => state.completed.includes(pid));
+    if (allDone && !state.run.bonusGiven) {
+      state.run.bonusGiven = true; state.xp += 25; earnBadge("perfect");
+      document.getElementById("perfectBanner").style.display = "block";
+      setTimeout(() => confetti(120), 400);
+    }
+  }
+  checkBadges(q);
+  const after = levelInfo().lvl;
+  save(); render();
+  confetti(q.boss ? 160 : 60);
+  if (after > before) { toast("⬆️ LEVEL UP! You are now a " + levelInfo().title + "!"); confetti(200); }
+  else if (q.boss) { toast("🐉 BOSS DOWN! +" + q.xp + " XP. The city gains a landmark!"); }
+  else { toast("+" + q.xp + " XP - " + randomCheer()); }
+}
+function undoLast() {
+  const last = state.log[state.log.length - 1];
+  if (!last) { toast("Nothing to undo."); return; }
+  state.log.pop();
+  state.completed = state.completed.filter(id => id !== last.id);
+  state.xp = Math.max(0, state.xp - last.xp);
+  save(); render();
+  toast("Undone: " + last.title);
+}
+function randomCheer() {
+  const cheers = ["the city grows!", "another brick laid!", "momentum!", "that counted.",
+    "small wins stack.", "builders build.", "onwards!", "nice one, builder."];
+  return cheers[Math.floor(Math.random() * cheers.length)];
+}
+
+/* ===== BADGES ===== */
+function earnBadge(id) {
+  if (state.badges.includes(id)) return;
+  state.badges.push(id);
+  const b = BADGES.find(x => x.id === id);
+  if (b) setTimeout(() => toast(b.icon + " Badge earned: " + b.name + "!"), 900);
+}
+function checkBadges(justDone) {
+  if (state.completed.length >= 1) earnBadge("first");
+  if (justDone && justDone.boss) earnBadge("boss");
+  const t = todayStr();
+  if (state.log.filter(l => l.date === t).length >= 3) earnBadge("triple");
+  if (currentStreak() >= 3) earnBadge("streak3");
+  if (currentStreak() >= 7) earnBadge("streak7");
+  if (state.days.length >= 10) earnBadge("days10");
+  if (state.completed.includes("g4")) earnBadge("gate");
+  if (state.completed.includes("d2")) earnBadge("voice");
+  if (state.completed.includes("f1")) earnBadge("brief");
+  if (levelInfo().lvl >= 5) earnBadge("level5");
+  const coreLines = Object.keys(LINES).filter(k => k !== "side");
+  const allDone = coreLines.every(line => {
+    const qs = QUESTS.filter(q => q.line === line);
+    return qs.length === 0 || qs.every(q => state.completed.includes(q.id));
+  });
+  if (allDone) earnBadge("tower");
+}
+
+/* ===== RUN (pick 3) ===== */
+function ensureRunToday() {
+  if (state.run.date !== todayStr()) state.run = { date: todayStr(), picked: [], bonusGiven: false };
+}
+function pickForRun(id) {
+  ensureRunToday();
+  if (state.run.picked.includes(id)) return;
+  if (state.run.picked.length >= 3) { toast("Run is full (3 quests). Finish or remove one."); return; }
+  state.run.picked.push(id);
+  markDayPlayed();
+  save(); render();
+  toast("Picked for this run: " + questById(id).title);
+}
+function unpick(id) { state.run.picked = state.run.picked.filter(x => x !== id); save(); render(); }
+
+/* ===== CITY RENDER ===== */
+function renderCity() {
+  const svg = document.getElementById("citySvg");
+  const doneLog = state.log; const n = doneLog.length;
+  let parts = [];
+  parts.push('<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">' +
+    '<stop offset="0" stop-color="#1a2340"/><stop offset="1" stop-color="#2b3a63"/></linearGradient></defs>');
+  parts.push('<rect width="960" height="300" fill="url(#sky)"/>');
+  const lvl = levelInfo().lvl;
+  for (let i = 0; i < lvl * 6; i++) {
+    const sx = (i * 137 + 61) % 950, sy = (i * 83 + 17) % 140;
+    parts.push('<circle cx="' + sx + '" cy="' + sy + '" r="1.3" fill="#fff" opacity="0.7"/>');
+  }
+  parts.push('<circle cx="880" cy="52" r="24" fill="#f7f3d8" opacity="0.9"/>');
+  parts.push('<circle cx="871" cy="46" r="24" fill="#1a2340" opacity="0.55"/>');
+  parts.push('<rect y="258" width="960" height="42" fill="#1c2b22"/>');
+  parts.push('<rect y="256" width="960" height="4" fill="#2e4534"/>');
+  const slotW = 44; const usable = 900;
+  for (let i = 0; i < n; i++) {
+    const entry = doneLog[i];
+    const q = questById(entry.id) || { xp: entry.xp, line: "side", boss: false };
+    const color = (LINES[q.line] || LINES.side).color;
+    const x = 20 + ((i * 233) % (usable / slotW | 0)) * slotW + ((i * 71) % 9);
+    const isBoss = !!q.boss;
+    const h = isBoss ? 150 + (i % 3) * 14 : 36 + Math.min(q.xp, 60) + ((i * 29) % 22);
+    const w = isBoss ? 40 : 26 + ((i * 13) % 12);
+    const y = 258 - h;
+    parts.push('<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + color + '" rx="2" opacity="0.92"/>');
+    const rows = Math.max(1, Math.floor(h / 22)); const cols = Math.max(1, Math.floor(w / 14));
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const lit = ((i + r * 3 + c * 7) % 3) !== 0;
+      parts.push('<rect x="' + (x + 5 + c * 13) + '" y="' + (y + 6 + r * 20) + '" width="6" height="9" fill="' +
+        (lit ? "#ffe9a8" : "#141826") + '" opacity="0.95"/>');
+    }
+    if (isBoss) {
+      parts.push('<line x1="' + (x + w/2) + '" y1="' + y + '" x2="' + (x + w/2) + '" y2="' + (y - 22) + '" stroke="#ddd" stroke-width="2"/>');
+      parts.push('<path d="M ' + (x + w/2) + ' ' + (y - 22) + ' l 18 5 l -18 5 z" fill="#f5c542"/>');
+    }
+    if (i % 4 === 3) {
+      const tx = x + w + 8;
+      parts.push('<rect x="' + tx + '" y="242" width="4" height="16" fill="#5a3d24"/>');
+      parts.push('<circle cx="' + (tx + 2) + '" cy="238" r="9" fill="#2e7d4f"/>');
+    }
+  }
+  svg.innerHTML = parts.join("");
+  const cap = document.getElementById("cityCaption");
+  if (n === 0) cap.textContent = "An empty plot of land, full of potential. Finish a quest to lay the first building.";
+  else if (n < 5) cap.textContent = n + " building" + (n>1?"s":"") + " so far. A settlement begins.";
+  else if (n < 12) cap.textContent = n + " buildings. This is officially a village now.";
+  else if (n < 20) cap.textContent = n + " buildings. A proper town, built one finished thing at a time.";
+  else cap.textContent = n + " buildings. A city. You built every single one.";
+}
+
+/* ===== UI RENDER ===== */
+function render() {
+  ensureRunToday();
+  const info = levelInfo();
+  document.getElementById("levelNum").textContent = info.lvl;
+  document.getElementById("levelTitle").textContent = info.title;
+  const span = info.ceil - info.floor;
+  const pct = Math.min(100, Math.round(((state.xp - info.floor) / span) * 100));
+  document.getElementById("xpFill").style.width = pct + "%";
+  document.getElementById("xpLabel").textContent = state.xp + " XP total - " + (info.ceil - state.xp) + " XP to next level";
+  document.getElementById("streakNum").textContent = currentStreak();
+  document.getElementById("bestStreak").textContent = "best " + state.bestStreak;
+  document.getElementById("totalDays").textContent = state.days.length + " day" + (state.days.length===1?"":"s") + " played";
+  renderCity(); renderRun(); renderLines(); renderBadges();
+}
+
+function renderRun() {
+  const wrapEl = document.getElementById("runSlots");
+  wrapEl.innerHTML = "";
+  for (let i = 0; i < 3; i++) {
+    const id = state.run.picked[i];
+    const div = document.createElement("div");
+    if (id) {
+      const q = questById(id);
+      const done = state.completed.includes(id);
+      div.className = "run-slot filled" + (done ? " done" : "");
+      div.innerHTML = '<span>' + (done ? "✅" : (LINES[q.line]||LINES.side).icon) + '</span><span>' +
+        escapeHtml(q.title) + '</span>' +
+        (done ? '' : '<span class="x" title="Remove from run" data-unpick="' + id + '">✕</span>');
+    } else {
+      div.className = "run-slot";
+      div.innerHTML = '<span>◻️</span><span style="color:var(--dim)">Empty slot - pick a quest below</span>';
+    }
+    wrapEl.appendChild(div);
+  }
+  document.getElementById("perfectBanner").style.display =
+    (state.run.bonusGiven && state.run.date === todayStr()) ? "block" : "none";
+  wrapEl.querySelectorAll("[data-unpick]").forEach(el =>
+    el.addEventListener("click", () => unpick(el.getAttribute("data-unpick"))));
+}
+
+function renderLines() {
+  const container = document.getElementById("lines");
+  const openStates = {};
+  container.querySelectorAll(".line-card").forEach(c => openStates[c.dataset.line] = c.classList.contains("open"));
+  container.innerHTML = "";
+  Object.keys(LINES).forEach(lineKey => {
+    const qs = allQuests().filter(q => q.line === lineKey);
+    if (!qs.length) return;
+    const doneCount = qs.filter(q => state.completed.includes(q.id)).length;
+    const meta = LINES[lineKey];
+    const card = document.createElement("div");
+    card.className = "line-card"; card.dataset.line = lineKey;
+    const wasOpen = openStates[lineKey];
+    const defaultOpen = doneCount < qs.length && ["gate","light"].includes(lineKey);
+    if (wasOpen === undefined ? defaultOpen : wasOpen) card.classList.add("open");
+    const pct = Math.round((doneCount / qs.length) * 100);
+    card.innerHTML =
+      '<div class="line-head">' +
+        '<div class="line-dot" style="background:' + meta.color + '"></div>' +
+        '<h3>' + meta.icon + " " + meta.name + '</h3>' +
+        '<div class="line-progress">' + doneCount + "/" + qs.length + (pct === 100 ? " ✅ COMPLETE" : "") + '</div>' +
+      '</div>' +
+      '<div class="line-bar"><div class="line-bar-fill" style="width:' + pct + '%;background:' + meta.color + '"></div></div>' +
+      '<div class="line-body"></div>';
+    const body = card.querySelector(".line-body");
+    qs.forEach(q => {
+      const done = state.completed.includes(q.id);
+      const inRun = state.run.picked.includes(q.id);
+      const div = document.createElement("div");
+      div.className = "quest" + (done ? " done" : "") + (q.boss ? " boss" : "");
+      div.innerHTML =
+        '<div class="q-main">' +
+          '<div class="q-title">' + escapeHtml(q.title) + (q.boss ? '<span class="boss-tag">BOSS</span>' : '') + '</div>' +
+          '<div class="q-note">' + escapeHtml(q.note || "") + '</div>' +
+        '</div>' +
+        '<div class="q-btns">' +
+          '<div class="q-xp">+' + q.xp + ' XP</div>' +
+          (done
+            ? '<div class="done-check">✔ done</div>'
+            : '<button class="btn-done" data-done="' + q.id + '">Done!</button>' +
+              (inRun ? '<button class="btn-ghost" data-unpick2="' + q.id + '">In run ✓</button>'
+                     : '<button class="btn-pick" data-pick="' + q.id + '">Pick for run</button>')) +
+        '</div>';
+      body.appendChild(div);
+    });
+    card.querySelector(".line-head").addEventListener("click", () => card.classList.toggle("open"));
+    container.appendChild(card);
+  });
+  container.querySelectorAll("[data-done]").forEach(el =>
+    el.addEventListener("click", e => { e.stopPropagation(); completeQuest(el.getAttribute("data-done")); }));
+  container.querySelectorAll("[data-pick]").forEach(el =>
+    el.addEventListener("click", e => { e.stopPropagation(); pickForRun(el.getAttribute("data-pick")); }));
+  container.querySelectorAll("[data-unpick2]").forEach(el =>
+    el.addEventListener("click", e => { e.stopPropagation(); unpick(el.getAttribute("data-unpick2")); }));
+}
+
+function renderBadges() {
+  const grid = document.getElementById("badgeGrid");
+  grid.innerHTML = "";
+  BADGES.forEach(b => {
+    const earned = state.badges.includes(b.id);
+    const div = document.createElement("div");
+    div.className = "badge" + (earned ? " earned" : "");
+    div.title = b.desc;
+    div.innerHTML = '<div class="b-icon">' + b.icon + '</div><div class="b-name">' + b.name + '</div><div>' + b.desc + '</div>';
+    grid.appendChild(div);
+  });
+}
+
+/* ===== EFFECTS ===== */
+let toastTimer = null;
+function toast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+}
+function confetti(count) {
+  const colors = ["#f5c542","#e07b39","#7b68ee","#2e9e6b","#d1568e","#4a90d9","#ffffff"];
+  for (let i = 0; i < count; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.background = colors[Math.floor(Math.random() * colors.length)];
+    c.style.animationDuration = (1.6 + Math.random() * 1.8) + "s";
+    c.style.animationDelay = (Math.random() * 0.4) + "s";
+    c.style.width = c.style.height = (6 + Math.random() * 8) + "px";
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), 4200);
+  }
+}
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+/* ===== TOOLS ===== */
+document.getElementById("btnAddQuest").addEventListener("click", () =>
+  document.getElementById("addForm").classList.toggle("open"));
+document.getElementById("btnSaveQuest").addEventListener("click", () => {
+  const title = document.getElementById("newTitle").value.trim();
+  if (!title) { toast("Give the quest a name first."); return; }
+  const xp = parseInt(document.getElementById("newSize").value, 10);
+  const line = document.getElementById("newLine").value;
+  const id = "c" + Date.now();
+  state.custom.push({ id, line, xp, title, note: "Your own quest, added " + todayStr() + ".", boss: xp >= 100 });
+  document.getElementById("newTitle").value = "";
+  document.getElementById("addForm").classList.remove("open");
+  save(); render();
+  toast("Quest added: " + title);
+});
+document.getElementById("btnUndo").addEventListener("click", undoLast);
+document.getElementById("btnExport").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "citadel-game-save-" + todayStr() + ".json";
+  a.click();
+  toast("Save exported. Keep it anywhere safe (the vault works).");
+});
+document.getElementById("btnImport").addEventListener("click", () =>
+  document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      state = Object.assign(state, JSON.parse(reader.result));
+      save(); render();
+      toast("Save imported. Welcome back!");
+    } catch (err) { toast("That file didn't look like a save. Nothing changed."); }
+  };
+  reader.readAsText(f);
+});
+document.getElementById("btnReport").addEventListener("click", () => {
+  const t = todayStr();
+  const doneToday = state.log.filter(l => l.date === t);
+  const doneAll = state.log;
+  let lines = [];
+  lines.push("CITADEL GAME PROGRESS REPORT - " + t);
+  lines.push("Level " + levelInfo().lvl + " (" + levelInfo().title + "), " + state.xp + " XP, streak " + currentStreak() + " days, " + state.days.length + " days played.");
+  lines.push("");
+  lines.push("Completed in the game (please update Action-Tracker to match, ask-first rules apply):");
+  if (doneAll.length === 0) lines.push("- nothing yet");
+  doneAll.forEach(l => lines.push("- [" + l.date + "] " + l.title + " (+" + l.xp + " XP)"));
+  lines.push("");
+  lines.push("Completed on " + t + " specifically: " + (doneToday.length ? doneToday.map(l => l.title).join("; ") : "none yet"));
+  const text = lines.join("\n");
+  navigator.clipboard.writeText(text).then(
+    () => toast("Report copied! Paste it into any AI chat."),
+    () => { prompt("Copy this report:", text); }
+  );
+});
+
+/* ===== BOOT ===== */
+load();
+ensureRunToday();
+render();
+</script>
+</body>
+</html>

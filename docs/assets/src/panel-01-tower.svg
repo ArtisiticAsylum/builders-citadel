@@ -1,0 +1,46 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" font-family="DejaVu Sans, sans-serif">
+<rect width="1200" height="675" fill="#fdeedc"/>
+<circle cx="1095" cy="85" r="46" fill="#f6b26b"/>
+<ellipse cx="330" cy="100" rx="60" ry="20" fill="#ffffff"/>
+<ellipse cx="378" cy="110" rx="42" ry="15" fill="#ffffff"/>
+<ellipse cx="858" cy="140" rx="55" ry="17" fill="#ffffff"/>
+<ellipse cx="818" cy="150" rx="38" ry="13" fill="#ffffff"/>
+<rect x="40" y="30" width="250" height="34" rx="16" fill="#c9563f"/>
+<text x="165" y="53" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">The whole system as one tower</text>
+<polygon points="320,520 600,620 600,652 320,552" fill="#7a5a3e"/>
+<polygon points="880,520 600,620 600,652 880,552" fill="#5e4530"/>
+<polygon points="320,520 600,420 880,520 600,620" fill="#8fbf7f"/>
+<polygon points="450,430 600,485 600,555 450,500" fill="#d9a86f"/>
+<polygon points="750,430 600,485 600,555 750,500" fill="#b9854e"/>
+<polygon points="450,430 600,375 750,430 600,485" fill="#e9c9a1"/>
+<polygon points="480,381 600,425 600,485 480,441" fill="#e0b57e"/>
+<polygon points="720,381 600,425 600,485 720,441" fill="#c4925c"/>
+<polygon points="480,381 600,337 720,381 600,425" fill="#f0d7b4"/>
+<polygon points="505,338 600,373 600,425 505,390" fill="#e8c294"/>
+<polygon points="695,338 600,373 600,425 695,390" fill="#cfa06a"/>
+<polygon points="505,338 600,303 695,338 600,373" fill="#f6e3c8"/>
+<polygon points="528,301 600,328 600,373 528,346" fill="#eccd9e"/>
+<polygon points="672,301 600,328 600,373 672,346" fill="#d4a76c"/>
+<polygon points="528,301 600,274 672,301 600,328" fill="#f9ecd6"/>
+<polygon points="528,301 600,328 600,190" fill="#e2793f"/>
+<polygon points="672,301 600,328 600,190" fill="#c9563f"/>
+<line x1="600" y1="192" x2="600" y2="136" stroke="#6e4a2c" stroke-width="3"/>
+<polygon points="600,136 650,149 600,162" fill="#c9563f"/>
+<text x="430" y="148" text-anchor="end" fill="#4a3520" font-size="18" font-weight="bold">You — North Star</text>
+<text x="430" y="170" text-anchor="end" fill="#8a6a48" font-size="14">set direction</text>
+<path d="M 440 150 L 588 150" fill="none" stroke="#b0543c" stroke-width="2.5" stroke-dasharray="3,6"/>
+<text x="840" y="298" fill="#4a3520" font-size="18" font-weight="bold">Board &amp; mentors</text>
+<text x="840" y="320" fill="#8a6a48" font-size="14">argue it, you decide</text>
+<path d="M 832 303 L 668 325" fill="none" stroke="#b0543c" stroke-width="2.5" stroke-dasharray="3,6"/>
+<text x="350" y="428" text-anchor="end" fill="#4a3520" font-size="18" font-weight="bold">Streams</text>
+<text x="350" y="450" text-anchor="end" fill="#8a6a48" font-size="14">projects, people, money</text>
+<path d="M 360 430 L 492 428" fill="none" stroke="#b0543c" stroke-width="2.5" stroke-dasharray="3,6"/>
+<rect x="840" y="545" width="28" height="28" rx="5" fill="#f2c94c" stroke="#b3881e" stroke-width="2"/>
+<text x="854" y="566" text-anchor="middle" fill="#4a3520" font-size="18" font-weight="bold">!</text>
+<text x="880" y="560" fill="#4a3520" font-size="18" font-weight="bold">SLIPPED box</text>
+<text x="880" y="582" fill="#8a6a48" font-size="14">never flatters</text>
+<path d="M 836 555 L 735 495" fill="none" stroke="#b0543c" stroke-width="2.5" stroke-dasharray="3,6"/>
+<polygon points="85,578 117,591 85,604 53,591" fill="#f2c94c"/>
+<polygon points="53,591 85,604 85,634 53,621" fill="#d4a72c"/>
+<polygon points="117,591 85,604 85,634 117,621" fill="#b3881e"/>
+</svg>
