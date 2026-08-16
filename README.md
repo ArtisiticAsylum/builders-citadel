@@ -4,7 +4,7 @@
 
 A life-management vault you hand to an AI. Rules first, folders second.
 
-Free and MIT licensed. It is the open drawer of [The Vault](https://humanlatency.online/vault.html) — the rest of the drawers are at [humanlatency.online](https://humanlatency.online).
+Free for personal and non-commercial use. It is the open drawer of [The Vault](https://humanlatency.online/vault.html) — the rest of the drawers are at [humanlatency.online](https://humanlatency.online).
 
 ![The whole system as one tower](docs/assets/hero.png)
 
@@ -113,7 +113,18 @@ Publishing your own version? Work through `PERSONALISE-CHECKLIST.md` first, so n
 
 ## Licence and credits
 
-Released under the **MIT Licence** — use it, adapt it, republish your own flavour. Just keep the copyright notice.
+Released under the **[PolyForm Noncommercial Licence 1.0.0](LICENSE)**.
+
+In plain English:
+
+- **Yes** — use it, adapt it, build your whole life on it, republish your own flavour, share it with friends. Free, forever, for anything that isn't a business.
+- **Yes** — charities, schools, universities, public research and government bodies count as non-commercial, whoever funds them.
+- **No** — you can't sell it, sell access to it, bundle it into a paid product or course, or use it inside a company's operations.
+- Keep the `Required Notice:` line and pass the licence along with any copy you share.
+
+**Want to use it commercially?** That's a conversation, not a no — email **cakeandink@gmail.com**.
+
+*Versions published before 16 August 2026 were released under the MIT Licence. That grant still stands for those copies; everything from here on is non-commercial.*
 
 Structure and rules distilled from a real working vault. Inspired in part by the public `CLAUDE.md` rules-file tradition in the AI-coding community.
 

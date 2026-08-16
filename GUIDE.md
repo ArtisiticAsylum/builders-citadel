@@ -12,7 +12,7 @@
 
 To make that work I needed my **voice and DNA reconstructed** so drafts sound like me; a **vault of my history, education, skills and experience** I can pull facts from the instant I need to apply for a job or showcase something; **mentors** I can argue a decision with from different angles; and **"battering rams"** in the Executors layer that push a decided project through until it's done. The part I care about most: **decisions, research and execution are kept separate and auditable** — you can see every step, automate many, and keep honest trackers so nothing quietly slips. It's also helped me keep my **loved ones in the loop** and hold onto relationships I'd otherwise have let drift. And because it touches private things, it's careful about **cost and privacy** — hence the **three kinds of files** you'll meet in Part 6.
 
-I've open-sourced it so other builders can have the same hub. This guide is how you make it yours.
+I've published it, free for personal and non-commercial use, so other builders can have the same hub. This guide is how you make it yours.
 
 — Aye
 
@@ -251,4 +251,4 @@ You don't have to use every layer. The core — rulebook, streams, logistics —
 
 ---
 
-*Built by Aye and shared open-source. Make it yours — then, if it saves you a bad day, pass it on.*
+*Built by Aye and shared free for personal and non-commercial use. Make it yours — then, if it saves you a bad day, pass it on.*

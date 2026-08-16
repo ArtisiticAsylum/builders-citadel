@@ -27,7 +27,7 @@ And because a system like this touches real, private things, I built it to be ca
 2. **Restricted files and folders** (names starting with `_`) — never opened without your explicit say-so in that conversation.
 3. **No-read files** (names ending in `-noread`) — never read at all, even by a search.
 
-I've shared this as open-source so other builders can have the same central hub. It's yours now — this setup makes it *yours specifically*. Take your time; nothing is sent, deleted, or changed without your say-so.
+I've shared this free, for personal and non-commercial use, so other builders can have the same central hub. It's yours now — this setup makes it *yours specifically*. Take your time; nothing is sent, deleted, or changed without your say-so.
 
 — Aye
 

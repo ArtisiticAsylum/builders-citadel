@@ -67,10 +67,10 @@
   <path d="M1180 320 l16 0 m-8 -8 l0 16" stroke="#d4a72c" stroke-width="3" stroke-linecap="round"/>
   <path d="M84 560 l14 0 m-7 -7 l0 14" stroke="#c98f5f" stroke-width="3" stroke-linecap="round"/>
 </g>
-<g font-family="DejaVu Sans, sans-serif">
+<g font-family="Ubuntu Sans, DejaVu Sans, sans-serif">
 <text x="640" y="92" font-size="64" font-weight="bold" fill="#4a3520" text-anchor="middle">Builder's Citadel</text>
 <text x="640" y="132" font-size="24" fill="#6e4a2c" text-anchor="middle">A rules-first vault for working safely with AI</text>
-<rect x="505" y="560" width="270" height="42" rx="21" fill="#c9563f"/>
-<text x="640" y="588" font-size="19" font-weight="bold" fill="#fdeedc" text-anchor="middle">Free forever - MIT license</text>
+<rect x="529" y="560" width="222" height="42" rx="21" fill="#c9563f"/>
+<text x="640" y="588" font-size="19" font-weight="bold" fill="#fdeedc" text-anchor="middle">Free for personal use</text>
 </g>
 </svg>

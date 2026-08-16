@@ -40,7 +40,7 @@
   <polygon points="430,60 505,167.5 430,205" fill="#c9563f"/>
   <line x1="430" y1="60" x2="430" y2="18" stroke="#7a5a3e" stroke-width="5"/>
   <polygon points="430,18 430,44 482,31" fill="#e2793f"/>
-  <g font-family="DejaVu Sans, sans-serif">
+  <g font-family="Ubuntu Sans, DejaVu Sans, sans-serif">
     <path d="M352 78 Q300 92 268 112" fill="none" stroke="#b0543c" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
     <text x="120" y="70" font-size="19" font-weight="bold" fill="#6e4a2c">You - North Star</text>
     <text x="120" y="92" font-size="14" fill="#8a6a48">set direction</text>
@@ -71,12 +71,12 @@
     <polygon points="750,513 722,520 722,540 750,533" fill="#b3881e"/>
   </g>
   <path d="M664 422 Q620 420 588 428" fill="none" stroke="#b0543c" stroke-width="2.5" stroke-dasharray="1 8" stroke-linecap="round"/>
-  <g font-family="DejaVu Sans, sans-serif">
+  <g font-family="Ubuntu Sans, DejaVu Sans, sans-serif">
     <text x="720" y="180" font-size="58" font-weight="bold" fill="#4a3520">Builder's Citadel</text>
     <text x="722" y="228" font-size="23" fill="#6e4a2c">A rules-first life-management vault</text>
     <text x="722" y="260" font-size="23" fill="#6e4a2c">for working safely with AI</text>
-    <rect x="722" y="292" width="262" height="40" rx="20" fill="#c9563f"/>
-    <text x="738" y="319" font-size="19" font-weight="bold" fill="#fdeedc">Free forever - MIT license</text>
+    <rect x="722" y="292" width="222" height="40" rx="20" fill="#c9563f"/>
+    <text x="738" y="319" font-size="19" font-weight="bold" fill="#fdeedc">Free for personal use</text>
     <text x="722" y="372" font-size="16" fill="#8a6a48">The walls are the rules - that's what lets</text>
     <text x="722" y="394" font-size="16" fill="#8a6a48">you put real things inside.</text>
   </g>
