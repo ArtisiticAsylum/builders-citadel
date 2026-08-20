@@ -30,6 +30,10 @@ Because it is only useful if it holds *everything*, in one defended place.
 
 The point is cognitive load. Instead of your projects, people, money, deadlines and half-formed ideas living in your head — and leaking out at 3am — they live in one structure an AI can work in safely. Safely is the whole trick. The walls are what let you put real things inside.
 
+One Big Ask:
+I made this free even though its extremely valuable to me. I believe in 80,000 Hours and effective altruism where real active work and impact compounds through amplification or others good intent, not single good acts. Open, builder-minded people like those in this community are uniquely the type of people that have unique capabilities for good.
+So if you do good things and help others or yourself through this system. I would really love it if you could let me know at Aye@paing.group.
+
 ## What it does once set up
 
 - **A morning brief that knows your whole life** — what moved, what is due, what slipped — in your inbox before you wake.
